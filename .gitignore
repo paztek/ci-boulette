@@ -5,3 +5,9 @@
 
 # OS X Files
 .DS_Store
+
+# Vendor files
+vendor/
+
+# Composer
+composer.phar
