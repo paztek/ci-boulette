@@ -4,6 +4,8 @@ L'intégration continue sans boulette.
 
 ## Goal
 
+Github provides "web hooks" : a way for any Internet facing web server to receive a POST request at each commit on a repo with all the relevant infos concerning the commit.
+
 The goal is to make a simplistic web app running on the server receiving these web hooks concerning one or many Github repositories.
 This app would respond by running system commands locally to help continuously deploy apps on the server or maintain up-to-date dependencies
 to libraries used by apps running on the server.
