@@ -11,3 +11,7 @@ vendor/
 
 # Composer
 composer.phar
+composer.lock
+
+#IIS
+web/Web.config
