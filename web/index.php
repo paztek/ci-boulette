@@ -18,7 +18,14 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array
 
 $yaml = new Parser();
 
-$users = $yaml->parse(file_get_contents(__DIR__.'/../users.yml'));
+$userConfig = $yaml->parse(file_get_contents(__DIR__.'/../users.yml'));
+
+$users = array();
+
+foreach ($userConfig as $username => $infos)
+{
+    $users[$username] = array($infos['role'], $infos['password']);
+}
 
 // The Session service
 $app->register(new Silex\Provider\SessionServiceProvider());
