@@ -1,7 +1,5 @@
 <?php
-
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\Request;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
@@ -38,19 +36,19 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 /*
  * Routes
  */
-$app->get('/', function (Request $request) use($app) {
+$app->get('/', function ($request) use($app) {
     // TODO Display dashboard
 });
 
-$app->get('/login', function(Request $request) use ($app) {
-    return $app['twig']->render('login.html.twig');
+$app->get('/login', function($request) use ($app) {
+    // TODO Display a login form
 });
 
-$app->post('/login_check', function(Request $request) use ($app) {
+$app->post('/login_check', function($request) use ($app) {
     // TODO Handle login form and log user in
 });
 
-$app->get('/logout', function(Request $request) use ($app) {
+$app->get('/logout', function($request) use ($app) {
     // TODO Log user out and redirect to /
 });
 
@@ -61,7 +59,7 @@ $app->error(function(\Exception $exception) use ($app) {
     if ($exception instanceof NotFoundHttpException) {
         return $app['twig']->render('404.html.twig');
     }
-    return $app['twig']->render('500.html.twig', array('message' => $exception->getMessage()));
+    return $app['twig']->render('500.html.twig');
 });
 
 $app->run();

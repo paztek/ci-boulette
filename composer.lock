@@ -1,13 +1,9 @@
 {
-<<<<<<< HEAD
     "_readme": [
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
     "hash": "92b3c13d59acead82f9de02034814a61",
-=======
-    "hash": "74564b9cf23824fbbfd75ae4bf0580ab",
->>>>>>> Add login page + complete page 500.html.twig + correct bugs index.php
     "packages": [
         {
             "name": "monolog/monolog",
