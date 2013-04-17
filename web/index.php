@@ -1,10 +1,10 @@
 <?php
 
+require_once __DIR__.'/../vendor/autoload.php';
+
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Yaml\Parser;
-
-require_once __DIR__.'/../vendor/autoload.php';
 
 $app = new Silex\Application();
 
@@ -26,6 +26,28 @@ foreach ($userConfig as $username => $infos)
 {
     $users[$username] = array($infos['role'], $infos['password']);
 }
+
+// Doctrine DBAL Service provider
+$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+        'db.options' => array(
+                'driver'   => 'pdo_sqlite',
+                'path'     => __DIR__.'/../data/app.db',
+        ),
+));
+
+// Doctrine ORM Service provider
+$app->register(new Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider(), array(
+        "orm.proxies_dir" => "/path/to/proxies",
+        "orm.em.options" => array(
+                "mappings" => array(
+                        array(
+                                "type" => "annotation",
+                                "namespace" => "CiBoulette\Model",
+                                "resources_namespace" => "CiBoulette\Model",
+                        ),
+                ),
+        ),
+));
 
 // The Session service
 $app->register(new Silex\Provider\SessionServiceProvider());
