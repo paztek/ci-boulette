@@ -25,6 +25,18 @@ $app->get('/login', function(Request $request) use ($app) {
 });
 
 /*
+ * Debug Routes
+ */
+if ($app['debug']) {
+	$app->get('/info', function() {
+		ob_start();
+		phpinfo();
+		$info = ob_get_contents();
+		ob_end_clean();
+		return $info;
+	});
+}
+/*
  * Error handling (404, 500, ...)
  */
 $app->error(function(\Exception $exception) use ($app) {
