@@ -11,10 +11,13 @@ vendor/
 
 # Composer
 composer.phar
-composer.lock
 
 # Silex logs
 logs/*
 
 #IIS
 web/Web.config
+
+# Parameters file
+config.yml
+users.yml

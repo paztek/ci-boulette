@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Yaml\Parser;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
@@ -15,6 +16,13 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array
 	'monolog.logfile' => __DIR__.'/../logs/silex.log',
 ));
 
+$yaml = new Parser();
+
+$users = $yaml->parse(file_get_contents(__DIR__.'/../users.yml'));
+
+// The Session service
+$app->register(new Silex\Provider\SessionServiceProvider());
+
 // The Security service
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
         'security.firewalls' => array(
@@ -23,7 +31,8 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
                 'main' => array(
                         'pattern' => '^/',
                         'form' => array('login_path' => '/login', 'check_path' => '/login_check'),
-                        'logout' => array('logout_path' => '/logout')
+                        'logout' => array('logout_path' => '/logout'),
+                        'users' => $users
                         )
                 )
         )
@@ -43,7 +52,10 @@ $app->get('/', function (Request $request) use($app) {
 });
 
 $app->get('/login', function(Request $request) use ($app) {
-    return $app['twig']->render('login.html.twig');
+    return $app['twig']->render('login.html.twig', array(
+        'error'         => $app['security.last_error']($request),
+        'last_username' => $app['session']->get('_security.last_username'),
+    ));
 });
 
 $app->post('/login_check', function(Request $request) use ($app) {
