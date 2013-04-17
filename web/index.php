@@ -65,14 +65,6 @@ $app->get('/login', function(Request $request) use ($app) {
     ));
 });
 
-$app->post('/login_check', function(Request $request) use ($app) {
-    // TODO Handle login form and log user in
-});
-
-$app->get('/logout', function(Request $request) use ($app) {
-    // TODO Log user out and redirect to /
-});
-
 /*
  * Error handling (404, 500, ...)
  */
