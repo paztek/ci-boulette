@@ -18,6 +18,9 @@ logs/*
 #IIS
 web/Web.config
 
+# Debug
+web/info.php
+
 # Parameters file
 config.yml
 users.yml
