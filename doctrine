@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+set_time_limit(0);
+
+$app = require_once __DIR__.'/bootstrap.php';
+
+use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
+use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Symfony\Component\Console\Helper\HelperSet;
+
+$helperSet = new HelperSet(array(
+    'db' => new ConnectionHelper($app['orm.em']->getConnection()),
+    'em' => new EntityManagerHelper($app['orm.em'])
+));
+ 
+ConsoleRunner::run($helperSet);
+
+$application = $app['console'];
+$application->run();
+
+?>

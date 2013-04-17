@@ -1,36 +1,38 @@
 <?php
 namespace CiBoulette\Model;
 
-use Symfony\Component\HttpFoundation\Tests\StringableObject;
-
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\GeneratedValue;
 
 /**
- * @ORM\Table(name="repository")
- * @ORM\Entity
+ * @Table(name="repository")
+ * @Entity
  */
 class Repository
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Column(name="id", type="integer")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255, nullable=false)
+     * @Column(name="url", type="string", length=255, nullable=false)
      */
     protected $url;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="active", type="boolean", nullable=false)
+     * @Column(name="active", type="boolean", nullable=false)
      */
     protected $active;
 

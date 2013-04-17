@@ -21,6 +21,9 @@ web/Web.config
 # Debug
 web/info.php
 
+# Database
+/data/*
+
 # Parameters file
 config.yml
 users.yml
