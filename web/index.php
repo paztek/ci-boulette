@@ -1,5 +1,8 @@
 <?php
+
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Yaml\Parser;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
@@ -13,6 +16,20 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array
 	'monolog.logfile' => __DIR__.'/../logs/silex.log',
 ));
 
+$yaml = new Parser();
+
+$userConfig = $yaml->parse(file_get_contents(__DIR__.'/../users.yml'));
+
+$users = array();
+
+foreach ($userConfig as $username => $infos)
+{
+    $users[$username] = array($infos['role'], $infos['password']);
+}
+
+// The Session service
+$app->register(new Silex\Provider\SessionServiceProvider());
+
 // The Security service
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
         'security.firewalls' => array(
@@ -21,7 +38,8 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
                 'main' => array(
                         'pattern' => '^/',
                         'form' => array('login_path' => '/login', 'check_path' => '/login_check'),
-                        'logout' => array('logout_path' => '/logout')
+                        'logout' => array('logout_path' => '/logout'),
+                        'users' => $users
                         )
                 )
         )
@@ -36,20 +54,15 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 /*
  * Routes
  */
-$app->get('/', function ($request) use($app) {
+$app->get('/', function (Request $request) use($app) {
     // TODO Display dashboard
 });
 
-$app->get('/login', function($request) use ($app) {
-    // TODO Display a login form
-});
-
-$app->post('/login_check', function($request) use ($app) {
-    // TODO Handle login form and log user in
-});
-
-$app->get('/logout', function($request) use ($app) {
-    // TODO Log user out and redirect to /
+$app->get('/login', function(Request $request) use ($app) {
+    return $app['twig']->render('login.html.twig', array(
+        'error'         => $app['security.last_error']($request),
+        'last_username' => $app['session']->get('_security.last_username'),
+    ));
 });
 
 /*
@@ -59,7 +72,7 @@ $app->error(function(\Exception $exception) use ($app) {
     if ($exception instanceof NotFoundHttpException) {
         return $app['twig']->render('404.html.twig');
     }
-    return $app['twig']->render('500.html.twig');
+    return $app['twig']->render('500.html.twig', array('message' => $exception->getMessage()));
 });
 
 $app->run();
