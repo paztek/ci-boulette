@@ -7,6 +7,12 @@ $app = new Silex\Application();
 
 $app['debug'] = true;
 
+// The Logging Service
+$app->register(new Silex\Provider\MonologServiceProvider(), array
+(
+	'monolog.logfile' => __DIR__.'/../logs/silex.log',
+));
+
 // The Security service
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
         'security.firewalls' => array(
