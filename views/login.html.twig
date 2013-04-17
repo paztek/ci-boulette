@@ -3,10 +3,12 @@
 {% block body %}
 <div class="container">
 	<form class="form-signin" action="/login_check" method="POST">
+        {% if error %}
 	    <div class="alert alert-error">
 	        <button type="button" class="close" data-dismiss="alert">&times;</button>
 	        <strong>{{ error }}</strong>
         </div>
+        {% endif %}
 		<h2 class="form-signin-heading">Please sign in</h2>
 		<input type="text" name="_username" class="input-block-level" placeholder="Username" value="{{ last_username }}">
 		<input type="password" name="_password" class="input-block-level" placeholder="Password">
