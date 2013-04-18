@@ -21,7 +21,11 @@
             <td>
                 <a href="/repositories/{{ repository.id }}/edit" class="btn"><i class="icon-wrench"></i></a>
                 <a href="/repositories/{{ repository.id }}" class="btn"><i class="icon-eye-open"></i></a>
-                <a href="/repositories/{{ repository.id }}/deactivate" data-method="put" class="btn"><i class="icon-ban-circle"></i></a>
+                {% if repository.active %}
+                <a href="/repositories/{{ repository.id }}/deactivate" data-method="PUT" class="btn"><i class="icon-ban-circle"></i></a>
+                {% else %}
+                <a href="/repositories/{{ repository.id }}/activate" data-method="PUT" class="btn"><i class="icon-ok-circle"></i></a>
+                {% endif %}
             </td>
         </tr>
         {% else %}

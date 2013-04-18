@@ -108,6 +108,36 @@ $app->delete('/repositories/{id}', function(Request $request, $id) use ($app) {
     return $app->redirect('/repositories');
 });
 
+$app->put('/repositories/{id}/activate', function(Request $request, $id) use ($app) {
+    $em = $app['orm.em'];
+
+    // We find the repository
+    $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
+
+    if (!$repository) throw new NotFoundHttpException('The repository with id = '.$id.' can\'t be found');
+
+    $repository->setActive(true);
+
+    $em->flush();
+
+    return $app->redirect('/repositories');
+});
+
+$app->put('/repositories/{id}/deactivate', function(Request $request, $id) use ($app) {
+    $em = $app['orm.em'];
+
+    // We find the repository
+    $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
+
+    if (!$repository) throw new NotFoundHttpException('The repository with id = '.$id.' can\'t be found');
+
+    $repository->setActive(false);
+
+    $em->flush();
+
+    return $app->redirect('/repositories');
+});
+
 /*
  * Debug Routes
  */
