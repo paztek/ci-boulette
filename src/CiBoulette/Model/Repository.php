@@ -25,6 +25,13 @@ class Repository
     /**
      * @var string
      *
+     * @Column(name="name", type="string", length=255, nullable=false)
+     */
+    protected $name;
+
+    /**
+     * @var string
+     *
      * @Column(name="url", type="string", length=255, nullable=false)
      */
     protected $url;
@@ -42,6 +49,25 @@ class Repository
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param string $name
+     * @return Repository
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
