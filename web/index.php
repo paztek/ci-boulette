@@ -29,7 +29,7 @@ $app->get('/login', function(Request $request) use ($app) {
 /*
  * Repositories
  */
-$app->mount('/repositories', include 'repositories.php');
+$app->mount('/repositories', include __DIR__.'/../routes/repositories.php');
 
 /*
  * Debug Routes

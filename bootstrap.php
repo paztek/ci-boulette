@@ -8,7 +8,7 @@ $app['debug'] = true;
 
 // Parse users.yml
 $yaml = new Symfony\Component\Yaml\Parser();
-$userConfig = $yaml->parse(file_get_contents(__DIR__.'/users.yml'));
+$userConfig = $yaml->parse(file_get_contents(__DIR__.'/data/users.yml'));
 $users = array();
 foreach ($userConfig as $username => $infos)
 {
