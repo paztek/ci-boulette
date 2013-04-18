@@ -14,8 +14,10 @@
         {% endblock %}
     </header>
     <main>
-        {% block main %}
-        {% endblock %}
+        <div class="container">
+            {% block main %}
+            {% endblock %}
+        </div>
     </main>
     <footer>
         {% block footer %}
@@ -27,6 +29,7 @@
     {% block javascripts %}
     <script src="/assets/js/jquery.js"></script>
     <script src="/assets/js/bootstrap.js"></script>
+    <script src="/assets/js/rest.js"></script>
     {% endblock %}
 </body>
 </html>

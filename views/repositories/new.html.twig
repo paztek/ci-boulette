@@ -1,0 +1,31 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+<h2>Add a new Github repository</h2>
+
+<form class="form-horizontal well" action="/repositories" method="POST">
+    <div class="control-group">
+        <label class="control-label" for="name">Name :</label>
+        <div class="controls">
+            <input type="text" name="name" required="required">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="url">URL :</label>
+        <div class="controls">
+            <input type="text" name="url" placeholder="Full URL to clone the repository" required="required" class="input-xxlarge">
+        </div>
+    </div>
+	<div class="control-group">
+		<label class="control-label" for="active">Active ? :</label>
+		<div class="controls">
+			<input type="checkbox" name="active" value="1">
+		</div>
+	</div>
+
+	<div class="actions">
+        <a href="/repositories" class="btn"><i class="icon-list"></i> Back to list</a>
+        <button type="submit" class="btn btn-success">Add</button>
+    </div>
+</form>
+{% endblock %}
