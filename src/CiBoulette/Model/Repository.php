@@ -6,10 +6,12 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\OrderBy;
 
 /**
  * @Table(name="repository")
- * @Entity
+ * @Entity(repositoryClass="\CiBoulette\Repository\RepositoryRepository")
  */
 class Repository
 {
@@ -42,6 +44,24 @@ class Repository
      * @Column(name="active", type="boolean", nullable=false)
      */
     protected $active;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @OneToMany(targetEntity="Command", mappedBy="repository")
+     * @OrderBy({"position" = "ASC"})
+     */
+    protected $commands;
+
+    public function __construct()
+    {
+        $this->commands = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     /**
      * @return integer
@@ -106,5 +126,53 @@ class Repository
     public function isActive()
     {
         return $this->active;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Add command
+     *
+     * @param \CiBoulette\Model\Command $command
+     * @return Repository
+     */
+    public function addCommand(\CiBoulette\Model\Command $command)
+    {
+        $this->commands[] = $command;
+
+        return $this;
+    }
+
+    /**
+     * Remove command
+     *
+     * @param \CiBoulette\Model\Command $command
+     */
+    public function removeCommand(\CiBoulette\Model\Command $command)
+    {
+        $this->commands->removeElement($command);
+    }
+
+    /**
+     * Get commands
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommands()
+    {
+        return $this->commands;
+    }
+
+    public function getFullUrl()
+    {
+        return 'https://github.com' . $this->url . '.git';
     }
 }
