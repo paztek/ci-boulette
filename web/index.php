@@ -32,6 +32,11 @@ $app->get('/login', function(Request $request) use ($app) {
 $app->mount('/repositories', include __DIR__.'/../routes/repositories.php');
 
 /*
+ * Commands
+ */
+$app->mount('/repositories/{repositoryId}/commands', include __DIR__.'/../routes/commands.php');
+
+/*
  * Debug Routes
  */
 if ($app['debug']) {
@@ -48,7 +53,7 @@ if ($app['debug']) {
  */
 $app->error(function(\Exception $exception) use ($app) {
     if ($exception instanceof NotFoundHttpException) {
-        return $app['twig']->render('404.html.twig');
+        return $app['twig']->render('404.html.twig', array('message' => $exception->getMessage()));
     }
     return $app['twig']->render('500.html.twig', array('message' => $exception->getMessage()));
 });
