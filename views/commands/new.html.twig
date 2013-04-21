@@ -1,9 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block main %}
-<h2>Add a new Github repository</h2>
+<h2>Add a new command to {{ repository.name }} Github repository</h2>
 
-<form class="form-horizontal well" action="/repositories/" method="POST">
+<form class="form-horizontal well" action="/repositories/{{ repository.id }}/commands/" method="POST">
     <div class="control-group">
         <label class="control-label" for="name">Name :</label>
         <div class="controls">
@@ -11,13 +11,9 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="url">URL :</label>
+        <label class="control-label" for="command">Command :</label>
         <div class="controls">
-            <div class="input-prepend input-append">
-                <span class="add-on">https://github.com</span>
-                <input type="text" name="url" placeholder="URL to clone the repository" required="required" class="input-xlarge">
-                <span class="add-on">.git</span>
-            </div>
+            <textarea name="command" placeholder="Command to execute" required="required" class="input-xxlarge"></textarea>
         </div>
     </div>
 	<div class="control-group">
@@ -28,7 +24,7 @@
 	</div>
 
 	<div class="actions">
-        <a href="/repositories" class="btn"><i class="icon-list"></i> Back to list</a>
+        <a href="/repositories/{{ repository.id }}/commands" class="btn"><i class="icon-list"></i> Back to list</a>
         <button type="submit" class="btn btn-success">Add</button>
     </div>
 </form>

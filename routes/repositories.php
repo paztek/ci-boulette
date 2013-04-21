@@ -2,11 +2,13 @@
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 
+use Doctrine\ORM\NoResultException;
+
 Request::enableHttpMethodParameterOverride();
 
-$repositories = $app['controllers_factory'];
- 
-$repositories->get('/', function(Request $request) use ($app) {
+$repositoriesApp = $app['controllers_factory'];
+
+$repositoriesApp->get('/', function(Request $request) use ($app) {
     $em = $app['orm.em'];
 
     // We find all the repositories
@@ -15,11 +17,11 @@ $repositories->get('/', function(Request $request) use ($app) {
     return $app['twig']->render('repositories/list.html.twig', array('repositories' => $repositories));
 });
 
-$repositories->get('/new', function(Request $request) use ($app) {
+$repositoriesApp->get('/new', function(Request $request) use ($app) {
     return $app['twig']->render('repositories/new.html.twig');
 });
 
-$repositories->post('/', function(Request $request) use ($app) {
+$repositoriesApp->post('/', function(Request $request) use ($app) {
     $em = $app['orm.em'];
 
     // We create a new repository based on posted values
@@ -31,38 +33,53 @@ $repositories->post('/', function(Request $request) use ($app) {
     $em->persist($repository);
     $em->flush();
 
-    return $app->redirect('/repositories/');
+    return $app->redirect('/repositories');
 });
 
-$repositories->get('/{id}', function(Request $request, $id) use ($app) {
+$repositoriesApp->get('/{id}', function(Request $request, $id) use ($app) {
     $em = $app['orm.em'];
 
     // We find the repository
-    $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
-
-    if (!$repository) throw new NotFoundHttpException('The repository with id = '.$request->query->get('id').' can\'t be found');
+    try
+    {
+        $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
+    }
+    catch (NoResultException $exception)
+    {
+        throw new NotFoundHttpException('The repository with id = '.$id.' can\'t be found', $exception);
+    }
 
     return $app['twig']->render('repositories/show.html.twig', array('repository' => $repository));
 });
 
-$repositories->get('/{id}/edit', function(Request $request, $id) use ($app) {
+$repositoriesApp->get('/{id}/edit', function(Request $request, $id) use ($app) {
     $em = $app['orm.em'];
 
     // We find the repository
-    $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
-
-    if (!$repository) throw new NotFoundHttpException('The repository with id = '.$request->query->get('id').' can\'t be found');
+    try
+    {
+        $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
+    }
+    catch (NoResultException $exception)
+    {
+        throw new NotFoundHttpException('The repository with id = '.$id.' can\'t be found', $exception);
+    }
 
     return $app['twig']->render('repositories/edit.html.twig', array('repository' => $repository));
 });
 
-$repositories->put('/{id}', function(Request $request, $id) use ($app) {
+$repositoriesApp->put('/{id}', function(Request $request, $id) use ($app) {
     $em = $app['orm.em'];
 
     // We find the repository
-    $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
-
-    if (!$repository) throw new NotFoundHttpException('The repository with id = '.$id.' can\'t be found');
+    try
+    {
+        $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
+    }
+    catch (NoResultException $exception)
+    {
+        throw new NotFoundHttpException('The repository with id = '.$id.' can\'t be found', $exception);
+    }
 
     $repository->setName($request->request->get('name'));
     $repository->setUrl($request->request->get('url'));
@@ -73,13 +90,18 @@ $repositories->put('/{id}', function(Request $request, $id) use ($app) {
     return $app->redirect('/repositories/');
 });
 
-$repositories->delete('/{id}', function(Request $request, $id) use ($app) {
+$repositoriesApp->delete('/{id}', function(Request $request, $id) use ($app) {
     $em = $app['orm.em'];
 
     // We find the repository
-    $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
-
-    if (!$repository) throw new NotFoundHttpException('The repository with id = '.$id.' can\'t be found');
+    try
+    {
+        $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
+    }
+    catch (NoResultException $exception)
+    {
+        throw new NotFoundHttpException('The repository with id = '.$id.' can\'t be found', $exception);
+    }
 
     $em->remove($repository);
 
@@ -88,13 +110,18 @@ $repositories->delete('/{id}', function(Request $request, $id) use ($app) {
     return $app->redirect('/repositories/');
 });
 
-$repositories->put('/{id}/activate', function(Request $request, $id) use ($app) {
+$repositoriesApp->put('/{id}/activate', function(Request $request, $id) use ($app) {
     $em = $app['orm.em'];
 
     // We find the repository
-    $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
-
-    if (!$repository) throw new NotFoundHttpException('The repository with id = '.$id.' can\'t be found');
+    try
+    {
+        $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
+    }
+    catch (NoResultException $exception)
+    {
+        throw new NotFoundHttpException('The repository with id = '.$id.' can\'t be found', $exception);
+    }
 
     $repository->setActive(true);
 
@@ -103,13 +130,18 @@ $repositories->put('/{id}/activate', function(Request $request, $id) use ($app) 
     return $app->redirect('/repositories/');
 });
 
-$repositories->put('/{id}/deactivate', function(Request $request, $id) use ($app) {
+$repositoriesApp->put('/{id}/deactivate', function(Request $request, $id) use ($app) {
     $em = $app['orm.em'];
 
     // We find the repository
-    $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
-
-    if (!$repository) throw new NotFoundHttpException('The repository with id = '.$id.' can\'t be found');
+    try
+    {
+        $repository = $em->getRepository('CiBoulette\Model\Repository')->find($id);
+    }
+    catch (NoResultException $exception)
+    {
+        throw new NotFoundHttpException('The repository with id = '.$id.' can\'t be found', $exception);
+    }
 
     $repository->setActive(false);
 
@@ -118,4 +150,4 @@ $repositories->put('/{id}/deactivate', function(Request $request, $id) use ($app
     return $app->redirect('/repositories/');
 });
 
-return $repositories;
+return $repositoriesApp;

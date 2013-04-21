@@ -2,14 +2,15 @@
 
 {% block main %}
 <div class="well">
-    <h2>{{ repository.name }} Github repository</h2>
+    <h2>{{ repository }} Github repository</h2>
 
-    <p>Url : {{ repository.url }}</p>
+    <p>URL : <a href="{{ repository.fullUrl }}">{{ repository.fullUrl }}</a></p>
     <p>Active ? : {{ repository.active ? 'Yes' : 'No' }}</p>
 
     <div class="actions">
         <a href="/repositories" class="btn"><i class="icon-list"></i> Back to list</a>
         <a href="/repositories/{{ repository.id }}/edit" class="btn btn-primary"><i class="icon-wrench icon-white"></i> Modify this repository</a>
+        <a href="/repositories/{{ repository.id }}/commands/" class="btn"><i class="icon-list-alt"></i> Show commands</a>
         <a href="/repositories/{{ repository.id }}" data-method="delete" class="btn btn-danger"><i class="icon-remove icon-white"></i> Delete this repository</a>
     </div>
 </div>

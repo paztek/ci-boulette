@@ -1,24 +1,28 @@
 {% extends 'layout.html.twig' %}
 
 {% block main %}
-<h2>Modify {{ repository.name }} Github repository</h2>
+<h2>Modify {{ repository }} Github repository</h2>
 
 <form class="form-horizontal well" action="/repositories/{{ repository.id }}" method="POST">
     <input type="hidden" name="_method" value="PUT">
     <div class="control-group">
-        <label class="control-label" for="name">Name</label>
+        <label class="control-label" for="name">Name :</label>
         <div class="controls">
             <input type="text" name="name" required="required" value="{{ repository.name }}">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="url">URL</label>
+        <label class="control-label" for="url">URL :</label>
         <div class="controls">
-            <input type="text" name="url" placeholder="Full URL to clone the repository" required="required" class="input-xxlarge" value="{{ repository.url }}">
+            <div class="input-prepend input-append">
+                <span class="add-on">https://github.com</span>
+                <input type="text" name="url" placeholder="URL to clone the repository" required="required" class="input-xlarge" value="{{ repository.url }}">
+                <span class="add-on">.git</span>
+            </div>
         </div>
     </div>
 	<div class="control-group">
-		<label class="control-label" for="active">Active ?</label>
+		<label class="control-label" for="active">Active ? :</label>
 		<div class="controls">
 			<input type="checkbox" name="active" value="1" {% if repository.active %}checked="checked"{% endif %}>
 		</div>

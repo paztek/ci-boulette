@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+<div class="well">
+    <h2>Command {{ command }} of {{ repository }} Github repository</h2>
+
+    <p>Command : {{ command.command }}</p>
+    <p>Active ? : {{ command.active ? 'Yes' : 'No' }}</p>
+
+    <div class="actions">
+        <a href="/repositories/{{ repository.id }}/commands" class="btn"><i class="icon-list"></i> Back to list</a>
+        <a href="/repositories/{{ repository.id }}/commands/{{ command.id }}/edit" class="btn btn-primary"><i class="icon-wrench icon-white"></i> Modify this command</a>
+        <a href="/repositories/{{ repository.id }}/commands/{{ command.id }}" data-method="delete" class="btn btn-danger"><i class="icon-remove icon-white"></i> Delete this command</a>
+    </div>
+</div>
+{% endblock %}

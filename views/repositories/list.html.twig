@@ -17,7 +17,7 @@
         <tr class="{{ repository.active ? 'success' : 'warning' }}">
             <td>{{ repository.id }}</td>
             <td>{{ repository.name }}</td>
-            <td><a href="{{ repository.url }}">{{ repository.url }}</a></td>
+            <td><a href="{{ repository.fullUrl }}">{{ repository.fullUrl }}</a></td>
             <td>
                 <a href="/repositories/{{ repository.id }}/edit" class="btn"><i class="icon-wrench"></i></a>
                 <a href="/repositories/{{ repository.id }}" class="btn"><i class="icon-eye-open"></i></a>
