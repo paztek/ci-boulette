@@ -24,6 +24,9 @@ web/info.php
 # Database
 /data/*
 
+# Tmp files
+*.php~
+
 # Parameters file
 config.yml
 users.yml
