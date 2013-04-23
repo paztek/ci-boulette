@@ -27,6 +27,13 @@ class Commit
     /**
      * @var string
      *
+     * @Column(name="hash", type="string", length=255)
+     */
+    protected $hash;
+
+    /**
+     * @var string
+     *
      * @Column(name="message", type="string", length=255)
      */
     protected $message;
@@ -243,5 +250,28 @@ class Commit
     public function getAfterPush()
     {
         return $this->afterPush;
+    }
+
+    /**
+     * Set hash
+     *
+     * @param  string $hash
+     * @return Commit
+     */
+    public function setHash($hash)
+    {
+        $this->hash = $hash;
+
+        return $this;
+    }
+
+    /**
+     * Get hash
+     *
+     * @return string
+     */
+    public function getHash()
+    {
+        return $this->hash;
     }
 }
