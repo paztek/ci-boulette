@@ -12,10 +12,14 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
 
 	$app['monolog']->addDebug('[WEBHOOK]Receiving Hook.');
 	
-	$app['monolog']->addDebug('[WEBHOOK]' . $request->request->get('payload'));
+    $payload = json_decode($request->request->get('payload'), true);
 	
-    $payload = json_decode($request->request->get('payload'));
-
+	// ob_start();
+	// var_dump($payload);
+	// $payload_dump = ob_get_contents();
+	// ob_end_clean();
+	// $app['monolog']->addDebug(sprintf("[WEBHOOK]%s", $payload_dump));
+	
     $repositoryUrl = $payload['repository']['url'];
 	
 	$app['monolog']->addInfo(sprintf("[WEBHOOK]Receiving hook from '%s'.", $repositoryUrl));
@@ -28,7 +32,7 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
 		
         // Push creation
         $push = new Push();
-        $push->setRef($payload['repository']['ref']);
+        $push->setRef($payload['ref']);
         $push->setTimestamp(new \DateTime());
 
         $em->persist($push);
