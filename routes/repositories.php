@@ -27,7 +27,7 @@ $repositoriesApp->post('/', function(Request $request) use ($app) {
     // We create a new repository based on posted values
     $repository = new \CiBoulette\Model\Repository();
     $repository->setName($request->request->get('name'));
-    $repository->setUrl($request->request->get('url'));
+    $repository->setUrl('https://github.com/' . $request->request->get('url'));
     $repository->setActive($request->request->get('active', 0));
 
     $em->persist($repository);
