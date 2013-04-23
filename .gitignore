@@ -24,6 +24,8 @@ web/info.php
 # Database
 /data/*
 
+!*.dist
+
 # Tmp files
 *.php~
 
