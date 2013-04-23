@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\OrderBy;
 
 /**
- * @Table(name="repository")
+ * @Table(name="repositories")
  * @Entity(repositoryClass="\CiBoulette\Repository\RepositoryRepository")
  */
 class Repository

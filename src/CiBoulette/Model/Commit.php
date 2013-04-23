@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
- * @Table(name="commit")
+ * @Table(name="commits")
  * @Entity()
  */
 class Commit

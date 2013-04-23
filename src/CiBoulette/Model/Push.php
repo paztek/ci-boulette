@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
- * @Table(name="push")
+ * @Table(name="pushes")
  * @Entity()
  */
 class Push

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
- * @Table(name="command")
+ * @Table(name="commands")
  * @Entity(repositoryClass="\CiBoulette\Repository\CommandRepository")
  */
 class Command

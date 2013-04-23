@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\GeneratedValue;
 
 /**
- * @Table(name="execution")
+ * @Table(name="executions")
  * @Entity(repositoryClass="\CiBoulette\Repository\ExecutionRepository")
  */
 class Execution
