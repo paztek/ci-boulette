@@ -1,11 +1,9 @@
 <?php
-use CiBoulette\Model\Commit;
-
-use CiBoulette\Model\Push;
-
 use Symfony\Component\HttpFoundation\Response;
-
 use Symfony\Component\HttpFoundation\Request;
+
+use CiBoulette\Model\Commit;
+use CiBoulette\Model\Push;
 
 $webhookApp = $app['controllers_factory'];
 

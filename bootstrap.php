@@ -20,6 +20,8 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
         'security.firewalls' => array(
                 'login' => array(
                         'pattern' => '/login$'),
+				'webhook' => array(
+						'pattern' => '/webhook$'),
                 'main' => array(
                         'pattern' => '^/',
                         'form' => array('login_path' => '/login', 'check_path' => '/login_check'),
