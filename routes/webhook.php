@@ -10,14 +10,20 @@ $webhookApp = $app['controllers_factory'];
 $webhookApp->post('/webhook', function(Request $request) use ($app) {
     $em = $app['orm.em'];
 
+	$app['monolog']->addDebug('Receiving Hook.');
+	
     $payload = json_decode($request->request->get('payload'));
 
     $repositoryUrl = $payload['repository']['url'];
-
+	
+	$app['monolog']->addInfo(sprintf("Receiving hook from '%s'.", $repositoryUrl));
+	
     try {
         // We find the corresponding repository
         $repository = $em->getRepository('CiBoulette\Model\Repository')->findOneByUrl($repositoryUrl);
 
+		$app['monolog']->addInfo(sprintf("Hook source is '%s'.", $repository));
+		
         // Push creation
         $push = new Push();
         $push->setRef($payload['repository']['ref']);
@@ -56,7 +62,8 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
         $em->flush();
 
     } catch (Exception $exception) {
-        // The corresponding repository wasn't found. Maybe do some logging before returning the response
+        // The corresponding repository wasn't found.
+		$app['monolog']->addError(sprintf("Repository '%s' is not found.", $repositoryUrl));
         return new Response('', 200);
     }
 
