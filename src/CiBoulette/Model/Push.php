@@ -62,7 +62,7 @@ class Push
      * @OrderBy({"timestamp" = "DESC"})
      */
     protected $commits;
-	
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
@@ -92,7 +92,7 @@ class Push
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -102,20 +102,20 @@ class Push
     /**
      * Set ref
      *
-     * @param string $ref
+     * @param  string $ref
      * @return Push
      */
     public function setRef($ref)
     {
         $this->ref = $ref;
-    
+
         return $this;
     }
 
     /**
      * Get ref
      *
-     * @return string 
+     * @return string
      */
     public function getRef()
     {
@@ -125,20 +125,20 @@ class Push
     /**
      * Set timestamp
      *
-     * @param \DateTime $timestamp
+     * @param  \DateTime $timestamp
      * @return Push
      */
     public function setTimestamp($timestamp)
     {
         $this->timestamp = $timestamp;
-    
+
         return $this;
     }
 
     /**
      * Get timestamp
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTimestamp()
     {
@@ -148,20 +148,20 @@ class Push
     /**
      * Set before
      *
-     * @param \CiBoulette\Model\Commit $before
+     * @param  \CiBoulette\Model\Commit $before
      * @return Push
      */
     public function setBefore(\CiBoulette\Model\Commit $before = null)
     {
         $this->before = $before;
-    
+
         return $this;
     }
 
     /**
      * Get before
      *
-     * @return \CiBoulette\Model\Commit 
+     * @return \CiBoulette\Model\Commit
      */
     public function getBefore()
     {
@@ -171,20 +171,20 @@ class Push
     /**
      * Set after
      *
-     * @param \CiBoulette\Model\Commit $after
+     * @param  \CiBoulette\Model\Commit $after
      * @return Push
      */
     public function setAfter(\CiBoulette\Model\Commit $after = null)
     {
         $this->after = $after;
-    
+
         return $this;
     }
 
     /**
      * Get after
      *
-     * @return \CiBoulette\Model\Commit 
+     * @return \CiBoulette\Model\Commit
      */
     public function getAfter()
     {
@@ -194,13 +194,13 @@ class Push
     /**
      * Add commits
      *
-     * @param \CiBoulette\Model\Commit $commits
+     * @param  \CiBoulette\Model\Commit $commits
      * @return Push
      */
     public function addCommit(\CiBoulette\Model\Commit $commits)
     {
         $this->commits[] = $commits;
-    
+
         return $this;
     }
 
@@ -217,7 +217,7 @@ class Push
     /**
      * Get commits
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCommits()
     {
@@ -227,20 +227,20 @@ class Push
     /**
      * Set repository
      *
-     * @param \CiBoulette\Model\Repository $repository
+     * @param  \CiBoulette\Model\Repository $repository
      * @return Push
      */
     public function setRepository(\CiBoulette\Model\Repository $repository = null)
     {
         $this->repository = $repository;
-    
+
         return $this;
     }
 
     /**
      * Get repository
      *
-     * @return \CiBoulette\Model\Repository 
+     * @return \CiBoulette\Model\Repository
      */
     public function getRepository()
     {
@@ -250,13 +250,13 @@ class Push
     /**
      * Add executions
      *
-     * @param \CiBoulette\Model\Execution $executions
+     * @param  \CiBoulette\Model\Execution $executions
      * @return Push
      */
     public function addExecution(\CiBoulette\Model\Execution $executions)
     {
         $this->executions[] = $executions;
-    
+
         return $this;
     }
 
@@ -273,7 +273,7 @@ class Push
     /**
      * Get executions
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getExecutions()
     {

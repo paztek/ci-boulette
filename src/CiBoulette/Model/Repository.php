@@ -81,7 +81,7 @@ class Repository
     }
 
     /**
-     * @param string $name
+     * @param  string     $name
      * @return Repository
      */
     public function setName($name)
@@ -100,7 +100,7 @@ class Repository
     }
 
     /**
-     * @param string $url
+     * @param  string     $url
      * @return Repository
      */
     public function setUrl($url)
@@ -119,7 +119,7 @@ class Repository
     }
 
     /**
-     * @param boolean $active
+     * @param  boolean    $active
      * @return Repository
      */
     public function setActive($active)
@@ -150,7 +150,7 @@ class Repository
     /**
      * Add command
      *
-     * @param \CiBoulette\Model\Command $command
+     * @param  \CiBoulette\Model\Command $command
      * @return Repository
      */
     public function addCommand(\CiBoulette\Model\Command $command)
@@ -188,13 +188,13 @@ class Repository
     /**
      * Add pushes
      *
-     * @param \CiBoulette\Model\Push $pushes
+     * @param  \CiBoulette\Model\Push $pushes
      * @return Repository
      */
     public function addPushe(\CiBoulette\Model\Push $pushes)
     {
         $this->pushes[] = $pushes;
-    
+
         return $this;
     }
 
@@ -211,7 +211,7 @@ class Repository
     /**
      * Get pushes
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPushes()
     {

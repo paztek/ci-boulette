@@ -6,8 +6,6 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\OneToMany;
-use Doctrine\ORM\Mapping\OrderBy;
 
 /**
  * @Table(name="execution")
@@ -22,38 +20,38 @@ class Execution
      * @Id
      * @GeneratedValue(strategy="AUTO")
      */
-	protected $id;
-	 
-	/**
-	 * @var \DateTime
-	 *
+    protected $id;
+
+    /**
+     * @var \DateTime
+     *
      *
      * @Column(name="timestamp", type="datetime", nullable=false)
      */
-	protected $timestamp;
-	 
-	/**
-	 * @var string
-	 *
+    protected $timestamp;
+
+    /**
+     * @var string
+     *
      *
      * @Column(name="runnedCommand", type="text", nullable=false)
      */
-	protected $runnedCommand;
-	 
-	/**
-	 * @var integer
-	 *
-	 * @Column(name="errCode", type="integer", nullable=false)
-	 */
-	protected $errCode;
-	 
-	/**
-	 * @var integer
-	 *
-	 * @Column(name="shellResult", type="text", nullable=false)
-	 */
-	protected $shellResult;
-	 
+    protected $runnedCommand;
+
+    /**
+     * @var integer
+     *
+     * @Column(name="errCode", type="integer", nullable=false)
+     */
+    protected $errCode;
+
+    /**
+     * @var integer
+     *
+     * @Column(name="shellResult", type="text", nullable=false)
+     */
+    protected $shellResult;
+
     /**
      * @var \CiBoulette\Model\Command
      *
@@ -61,8 +59,8 @@ class Execution
      * @JoinColumn(name="command_id", referencedColumnName="id")
      */
     protected $command;
-	
-	/**
+
+    /**
      * @var \CiBoulette\Model\Push
      *
      * @ManyToOne(targetEntity="Push", inversedBy="executions")
@@ -73,7 +71,7 @@ class Execution
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -83,20 +81,20 @@ class Execution
     /**
      * Set timestamp
      *
-     * @param \DateTime $timestamp
+     * @param  \DateTime $timestamp
      * @return Execution
      */
     public function setTimestamp($timestamp)
     {
         $this->timestamp = $timestamp;
-    
+
         return $this;
     }
 
     /**
      * Get timestamp
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTimestamp()
     {
@@ -106,20 +104,20 @@ class Execution
     /**
      * Set runnedCommand
      *
-     * @param string $runnedCommand
+     * @param  string    $runnedCommand
      * @return Execution
      */
     public function setRunnedCommand($runnedCommand)
     {
         $this->runnedCommand = $runnedCommand;
-    
+
         return $this;
     }
 
     /**
      * Get runnedCommand
      *
-     * @return string 
+     * @return string
      */
     public function getRunnedCommand()
     {
@@ -129,20 +127,20 @@ class Execution
     /**
      * Set errCode
      *
-     * @param integer $errCode
+     * @param  integer   $errCode
      * @return Execution
      */
     public function setErrCode($errCode)
     {
         $this->errCode = $errCode;
-    
+
         return $this;
     }
 
     /**
      * Get errCode
      *
-     * @return integer 
+     * @return integer
      */
     public function getErrCode()
     {
@@ -152,20 +150,20 @@ class Execution
     /**
      * Set shellResult
      *
-     * @param string $shellResult
+     * @param  string    $shellResult
      * @return Execution
      */
     public function setShellResult($shellResult)
     {
         $this->shellResult = $shellResult;
-    
+
         return $this;
     }
 
     /**
      * Get shellResult
      *
-     * @return string 
+     * @return string
      */
     public function getShellResult()
     {
@@ -175,20 +173,20 @@ class Execution
     /**
      * Set command
      *
-     * @param \CiBoulette\Model\Command $command
+     * @param  \CiBoulette\Model\Command $command
      * @return Execution
      */
     public function setCommand(\CiBoulette\Model\Command $command = null)
     {
         $this->command = $command;
-    
+
         return $this;
     }
 
     /**
      * Get command
      *
-     * @return \CiBoulette\Model\Command 
+     * @return \CiBoulette\Model\Command
      */
     public function getCommand()
     {
@@ -198,20 +196,20 @@ class Execution
     /**
      * Set push
      *
-     * @param \CiBoulette\Model\Push $push
+     * @param  \CiBoulette\Model\Push $push
      * @return Execution
      */
     public function setPush(\CiBoulette\Model\Push $push = null)
     {
         $this->push = $push;
-    
+
         return $this;
     }
 
     /**
      * Get push
      *
-     * @return \CiBoulette\Model\Push 
+     * @return \CiBoulette\Model\Push
      */
     public function getPush()
     {

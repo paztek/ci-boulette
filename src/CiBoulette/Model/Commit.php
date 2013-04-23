@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
 
@@ -78,7 +77,7 @@ class Commit
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -88,20 +87,20 @@ class Commit
     /**
      * Set message
      *
-     * @param string $message
+     * @param  string $message
      * @return Commit
      */
     public function setMessage($message)
     {
         $this->message = $message;
-    
+
         return $this;
     }
 
     /**
      * Get message
      *
-     * @return string 
+     * @return string
      */
     public function getMessage()
     {
@@ -111,20 +110,20 @@ class Commit
     /**
      * Set timestamp
      *
-     * @param \DateTime $timestamp
+     * @param  \DateTime $timestamp
      * @return Commit
      */
     public function setTimestamp($timestamp)
     {
         $this->timestamp = $timestamp;
-    
+
         return $this;
     }
 
     /**
      * Get timestamp
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTimestamp()
     {
@@ -134,20 +133,20 @@ class Commit
     /**
      * Set url
      *
-     * @param string $url
+     * @param  string $url
      * @return Commit
      */
     public function setUrl($url)
     {
         $this->url = $url;
-    
+
         return $this;
     }
 
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
@@ -157,20 +156,20 @@ class Commit
     /**
      * Set author
      *
-     * @param string $author
+     * @param  string $author
      * @return Commit
      */
     public function setAuthor($author)
     {
         $this->author = $author;
-    
+
         return $this;
     }
 
     /**
      * Get author
      *
-     * @return string 
+     * @return string
      */
     public function getAuthor()
     {
@@ -180,20 +179,20 @@ class Commit
     /**
      * Set push
      *
-     * @param \CiBoulette\Model\Push $push
+     * @param  \CiBoulette\Model\Push $push
      * @return Commit
      */
     public function setPush(\CiBoulette\Model\Push $push = null)
     {
         $this->push = $push;
-    
+
         return $this;
     }
 
     /**
      * Get push
      *
-     * @return \CiBoulette\Model\Push 
+     * @return \CiBoulette\Model\Push
      */
     public function getPush()
     {
@@ -203,20 +202,20 @@ class Commit
     /**
      * Set beforePush
      *
-     * @param \CiBoulette\Model\Push $beforePush
+     * @param  \CiBoulette\Model\Push $beforePush
      * @return Commit
      */
     public function setBeforePush(\CiBoulette\Model\Push $beforePush = null)
     {
         $this->beforePush = $beforePush;
-    
+
         return $this;
     }
 
     /**
      * Get beforePush
      *
-     * @return \CiBoulette\Model\Push 
+     * @return \CiBoulette\Model\Push
      */
     public function getBeforePush()
     {
@@ -226,20 +225,20 @@ class Commit
     /**
      * Set afterPush
      *
-     * @param \CiBoulette\Model\Push $afterPush
+     * @param  \CiBoulette\Model\Push $afterPush
      * @return Commit
      */
     public function setAfterPush(\CiBoulette\Model\Push $afterPush = null)
     {
         $this->afterPush = $afterPush;
-    
+
         return $this;
     }
 
     /**
      * Get afterPush
      *
-     * @return \CiBoulette\Model\Push 
+     * @return \CiBoulette\Model\Push
      */
     public function getAfterPush()
     {

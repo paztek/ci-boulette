@@ -72,7 +72,7 @@ class Command
      * @OrderBy({"timestamp" = "DESC"})
      */
     protected $executions;
-	
+
     /**
      * Get id
      *
@@ -86,7 +86,7 @@ class Command
     /**
      * Set position
      *
-     * @param integer $position
+     * @param  integer $position
      * @return Command
      */
     public function setPosition($position)
@@ -109,7 +109,7 @@ class Command
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string  $name
      * @return Command
      */
     public function setName($name)
@@ -132,7 +132,7 @@ class Command
     /**
      * Set command
      *
-     * @param string $command
+     * @param  string  $command
      * @return Command
      */
     public function setCommand($command)
@@ -155,7 +155,7 @@ class Command
     /**
      * Set repository
      *
-     * @param \CiBoulette\Model\Repository $repository
+     * @param  \CiBoulette\Model\Repository $repository
      * @return Command
      */
     public function setRepository(\CiBoulette\Model\Repository $repository = null)
@@ -178,7 +178,7 @@ class Command
     /**
      * Set active
      *
-     * @param boolean $active
+     * @param  boolean $active
      * @return Command
      */
     public function setActive($active)
@@ -204,17 +204,17 @@ class Command
     {
         $this->executions = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add executions
      *
-     * @param \CiBoulette\Model\Execution $executions
+     * @param  \CiBoulette\Model\Execution $executions
      * @return Command
      */
     public function addExecution(\CiBoulette\Model\Execution $executions)
     {
         $this->executions[] = $executions;
-    
+
         return $this;
     }
 
@@ -231,7 +231,7 @@ class Command
     /**
      * Get executions
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getExecutions()
     {

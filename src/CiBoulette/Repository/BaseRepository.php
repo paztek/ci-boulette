@@ -17,7 +17,6 @@ abstract class BaseRepository extends EntityRepository
         $result = parent::find($id, $lockMode, $lockVersion);
 
         if (!$result) throw new NoResultException('No result was found for query although at least one row was expected.');
-
         return $result;
     }
 }

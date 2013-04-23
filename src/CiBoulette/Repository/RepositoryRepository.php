@@ -18,7 +18,7 @@ class RepositoryRepository extends BaseRepository
     }
 
     /**
-     * @param integer $id
+     * @param  integer                         $id
      * @return \CiBoulette\Model\Repository
      * @throws \Doctrine\ORM\NoResultException
      */
