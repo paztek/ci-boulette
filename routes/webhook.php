@@ -7,9 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Component\HttpFoundation\Request;
 
-$webhook = $app['controller_factory'];
+$webhookApp = $app['controllers_factory'];
 
-$webhook->post('/webhook', function(Request $request) use ($app) {
+$webhookApp->post('/webhook', function(Request $request) use ($app) {
     $em = $app['orm.em'];
 
     $payload = json_decode($request->request->get('payload'));
@@ -63,5 +63,6 @@ $webhook->post('/webhook', function(Request $request) use ($app) {
     }
 
     return new Response('', 200);
-
 });
+
+return $webhookApp;
