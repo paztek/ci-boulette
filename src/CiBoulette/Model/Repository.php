@@ -53,9 +53,18 @@ class Repository
      */
     protected $commands;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @OneToMany(targetEntity="Push", mappedBy="repository")
+     * @OrderBy({"timestamp" = "DESC"})
+     */
+    protected $pushes;
+
     public function __construct()
     {
         $this->commands = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pushes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function __toString()
@@ -174,5 +183,38 @@ class Repository
     public function getFullUrl()
     {
         return 'https://github.com' . $this->url . '.git';
+    }
+
+    /**
+     * Add pushes
+     *
+     * @param \CiBoulette\Model\Push $pushes
+     * @return Repository
+     */
+    public function addPushe(\CiBoulette\Model\Push $pushes)
+    {
+        $this->pushes[] = $pushes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove pushes
+     *
+     * @param \CiBoulette\Model\Push $pushes
+     */
+    public function removePushe(\CiBoulette\Model\Push $pushes)
+    {
+        $this->pushes->removeElement($pushes);
+    }
+
+    /**
+     * Get pushes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPushes()
+    {
+        return $this->pushes;
     }
 }
