@@ -180,11 +180,6 @@ class Repository
         return $this->commands;
     }
 
-    public function getFullUrl()
-    {
-        return 'https://github.com' . $this->url . '.git';
-    }
-
     /**
      * Add pushes
      *
