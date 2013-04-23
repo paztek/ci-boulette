@@ -66,6 +66,14 @@ class Command
     }
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @OneToMany(targetEntity="\CiBoulette\Model\Execution", mappedBy="command")
+     * @OrderBy({"timestamp" = "DESC"})
+     */
+    protected $executions;
+	
+    /**
      * Get id
      *
      * @return integer
@@ -188,5 +196,45 @@ class Command
     public function getActive()
     {
         return $this->active;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->executions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add executions
+     *
+     * @param \CiBoulette\Model\Execution $executions
+     * @return Command
+     */
+    public function addExecution(\CiBoulette\Model\Execution $executions)
+    {
+        $this->executions[] = $executions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove executions
+     *
+     * @param \CiBoulette\Model\Execution $executions
+     */
+    public function removeExecution(\CiBoulette\Model\Execution $executions)
+    {
+        $this->executions->removeElement($executions);
+    }
+
+    /**
+     * Get executions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getExecutions()
+    {
+        return $this->executions;
     }
 }

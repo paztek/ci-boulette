@@ -62,6 +62,14 @@ class Push
      * @OrderBy({"timestamp" = "DESC"})
      */
     protected $commits;
+	
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @OneToMany(targetEntity="\CiBoulette\Model\Execution", mappedBy="push")
+     * @OrderBy({"timestamp" = "DESC"})
+     */
+    protected $executions;
 
     /**
      * @var \CiBoulette\Model\Repository
@@ -237,5 +245,38 @@ class Push
     public function getRepository()
     {
         return $this->repository;
+    }
+
+    /**
+     * Add executions
+     *
+     * @param \CiBoulette\Model\Execution $executions
+     * @return Push
+     */
+    public function addExecution(\CiBoulette\Model\Execution $executions)
+    {
+        $this->executions[] = $executions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove executions
+     *
+     * @param \CiBoulette\Model\Execution $executions
+     */
+    public function removeExecution(\CiBoulette\Model\Execution $executions)
+    {
+        $this->executions->removeElement($executions);
+    }
+
+    /**
+     * Get executions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getExecutions()
+    {
+        return $this->executions;
     }
 }
