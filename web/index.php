@@ -42,6 +42,11 @@ $app->mount('/repositories/{repositoryId}/commands', include __DIR__.'/../routes
 $app->mount('/', include __DIR__.'/../routes/webhook.php');
 
 /*
+ * Pushes
+ */
+$app->mount ('/pushes', include __DIR__.'/../routes/pushes.php');
+
+/*
  * Debug Routes
  */
 if ($app['debug']) {

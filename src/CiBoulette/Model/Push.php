@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @Table(name="pushes")
- * @Entity()
+ * @Entity(repositoryClass="\CiBoulette\Repository\PushRepository")
  */
 class Push
 {
