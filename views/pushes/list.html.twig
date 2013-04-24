@@ -19,7 +19,7 @@
         {% for push in pushes %}
         <tr class="success">
             <td>{{ push.id }}</td>
-			<td>{{ push.timestamp | date('d/m/Y') }}</td>
+			<td>{{ push.timestamp | date('d/m/Y - H:i:s') }}</td>
 			<td>{{ push.repository }}</td>
 			<td>{{ push.ref }}</td>
 			<td>{{ push.commits | length }}</td>
