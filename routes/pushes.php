@@ -30,7 +30,7 @@ $pushesApp->get('/{id}', function(Request $request, $id) use ($app) {
         throw new NotFoundHttpException('The push with id = '.$id.' can\'t be found', $exception);
     }
 
-    return $app['twig']->render('push/show.html.twig', array('push' => $push));
+    return $app['twig']->render('pushes/show.html.twig', array('push' => $push));
 });
 
 

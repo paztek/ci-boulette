@@ -9,7 +9,8 @@ class PushRepository extends BaseRepository
     public function findAllOrdered()
     {
         $builder = $this->createQueryBuilder('p')
-			->select('p, c, af, be')
+			->select('p, r, c, af, be')
+			->leftJoin('p.repository', 'r')
 			->leftJoin('p.commits', 'c')
 			->leftJoin('p.before', 'be')
 			->leftJoin('p.after', 'af')

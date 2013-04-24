@@ -2,9 +2,10 @@
 
 {% block main %}
 <div class="well">
-    <h2>Push {{ push }} of {{ repository }} Github repository</h2>
+    <h2>Push {{ push }} of {{ push.repository }} Github repository</h2>
 
-    <p>Ref : {{ push.ref }}</p>
+    <p>Repository : {{ push.repository }}</p>
+	<p>Ref : {{ push.ref }}</p>
     <p>Timestamp : {{ push.timestamp | date('d/m/Y') }}</p>
 	<p>#Commits : {{ push.commits | length }}</p>
 	<p>Before : {{ push.before }}</p>
@@ -12,7 +13,7 @@
 
     <div class="actions">
         <a href="/pushes/" class="btn"><i class="icon-list"></i> Back to list</a>
-        <a href="/pushes/{{ command.id }}" data-method="delete" class="btn btn-danger"><i class="icon-remove icon-white"></i> Delete this push</a>
+        <a href="/pushes/{{ push.id }}" data-method="delete" class="btn btn-danger"><i class="icon-remove icon-white"></i> Delete this push</a>
     </div>
 </div>
 {% endblock %}
