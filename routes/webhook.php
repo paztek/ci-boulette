@@ -34,6 +34,7 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
         $push = new Push();
         $push->setRef($payload['ref']);
         $push->setTimestamp(new \DateTime());
+        $push->setRepository($repository);
 
         $em->persist($push);
 
