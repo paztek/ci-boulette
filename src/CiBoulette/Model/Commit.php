@@ -81,6 +81,11 @@ class Commit
      */
     protected $afterPush;
 
+    public function __toString()
+    {
+        return $this->getHash();
+    }
+	
     /**
      * Get id
      *
