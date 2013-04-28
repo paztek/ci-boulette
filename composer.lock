@@ -1,9 +1,5 @@
 {
-    "_readme": [
-        "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
-    ],
-    "hash": "3072df25ccda13868ad9d619b19170ed",
+    "hash": "6db07b90c8b46cc6999487b9e6f84f32",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -11,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dflydev/dflydev-doctrine-orm-service-provider.git",
-                "reference": "e453be6837cad2cd50371c08497d1e5e4b0bde9c"
+                "reference": "0a9aef69bc5b25575f2183209e0b548e69eb7314"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dflydev/dflydev-doctrine-orm-service-provider/zipball/e453be6837cad2cd50371c08497d1e5e4b0bde9c",
-                "reference": "e453be6837cad2cd50371c08497d1e5e4b0bde9c",
+                "url": "https://api.github.com/repos/dflydev/dflydev-doctrine-orm-service-provider/zipball/0a9aef69bc5b25575f2183209e0b548e69eb7314",
+                "reference": "0a9aef69bc5b25575f2183209e0b548e69eb7314",
                 "shasum": ""
             },
             "require": {
@@ -26,6 +22,7 @@
             },
             "require-dev": {
                 "cilex/cilex": "1.*@dev",
+                "cilex/console-service-provider": "@dev",
                 "silex/silex": "1.*@dev"
             },
             "suggest": {
@@ -68,7 +65,7 @@
                 "pimple",
                 "silex"
             ],
-            "time": "2013-04-16 17:55:14"
+            "time": "2013-04-25 13:00:16"
         },
         {
             "name": "doctrine/common",
@@ -424,48 +421,48 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Silex.git",
-                "reference": "8bf675f57cb7967cbfa3988be501f1dfe6c45432"
+                "reference": "7244eb8e5c3bff655291f6e3addc942b27c369ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/8bf675f57cb7967cbfa3988be501f1dfe6c45432",
-                "reference": "8bf675f57cb7967cbfa3988be501f1dfe6c45432",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/7244eb8e5c3bff655291f6e3addc942b27c369ff",
+                "reference": "7244eb8e5c3bff655291f6e3addc942b27c369ff",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "pimple/pimple": "1.*",
-                "symfony/event-dispatcher": ">=2.1,<2.3-dev",
-                "symfony/http-foundation": ">=2.1,<2.3-dev",
-                "symfony/http-kernel": ">=2.1,<2.3-dev",
-                "symfony/routing": ">=2.1,<2.3-dev"
+                "symfony/event-dispatcher": ">=2.1,<2.4-dev",
+                "symfony/http-foundation": ">=2.1,<2.4-dev",
+                "symfony/http-kernel": ">=2.1,<2.4-dev",
+                "symfony/routing": ">=2.1,<2.4-dev"
             },
             "require-dev": {
                 "doctrine/dbal": ">=2.2.0,<2.4.0-dev",
                 "monolog/monolog": ">=1.4,<2.0,>=1.4.1",
                 "swiftmailer/swiftmailer": "4.2.*",
-                "symfony/browser-kit": ">=2.1,<2.3-dev",
-                "symfony/config": ">=2.1,<2.3-dev",
-                "symfony/css-selector": ">=2.1,<2.3-dev",
-                "symfony/dom-crawler": ">=2.1,<2.3-dev",
-                "symfony/finder": ">=2.1,<2.3-dev",
-                "symfony/form": ">=2.1.4,<2.3-dev",
-                "symfony/locale": ">=2.1,<2.3-dev",
-                "symfony/monolog-bridge": ">=2.1,<2.3-dev",
-                "symfony/options-resolver": ">=2.1,<2.3-dev",
-                "symfony/process": ">=2.1,<2.3-dev",
-                "symfony/security": ">=2.1,<2.3-dev",
-                "symfony/serializer": ">=2.1,<2.3-dev",
-                "symfony/translation": ">=2.1,<2.3-dev",
-                "symfony/twig-bridge": ">=2.1,<2.3-dev",
-                "symfony/validator": ">=2.1,<2.3-dev",
+                "symfony/browser-kit": ">=2.1,<2.4-dev",
+                "symfony/config": ">=2.1,<2.4-dev",
+                "symfony/css-selector": ">=2.1,<2.4-dev",
+                "symfony/dom-crawler": ">=2.1,<2.4-dev",
+                "symfony/finder": ">=2.1,<2.4-dev",
+                "symfony/form": ">=2.1.4,<2.4-dev",
+                "symfony/locale": ">=2.1,<2.4-dev",
+                "symfony/monolog-bridge": ">=2.1,<2.4-dev",
+                "symfony/options-resolver": ">=2.1,<2.4-dev",
+                "symfony/process": ">=2.1,<2.4-dev",
+                "symfony/security": ">=2.1,<2.4-dev",
+                "symfony/serializer": ">=2.1,<2.4-dev",
+                "symfony/translation": ">=2.1,<2.4-dev",
+                "symfony/twig-bridge": ">=2.1,<2.4-dev",
+                "symfony/validator": ">=2.1,<2.4-dev",
                 "twig/twig": ">=1.8.0,<2.0-dev"
             },
             "suggest": {
-                "symfony/browser-kit": ">=2.1,<2.3-dev",
-                "symfony/css-selector": ">=2.1,<2.3-dev",
-                "symfony/dom-crawler": ">=2.1,<2.3-dev",
-                "symfony/form": "To make use of the FormServiceProvider, >= 2.1.4 is required"
+                "symfony/browser-kit": ">=2.1,<2.4-dev",
+                "symfony/css-selector": ">=2.1,<2.4-dev",
+                "symfony/dom-crawler": ">=2.1,<2.4-dev",
+                "symfony/form": ">= 2.1.4,<2.4-dev"
             },
             "type": "library",
             "extra": {
@@ -498,7 +495,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2013-04-24 12:29:40"
+            "time": "2013-04-27 07:31:15"
         },
         {
             "name": "symfony/console",
@@ -768,6 +765,53 @@
             "description": "Symfony Monolog Bridge",
             "homepage": "http://symfony.com",
             "time": "2013-02-08 16:10:57"
+        },
+        {
+            "name": "symfony/process",
+            "version": "v2.2.1",
+            "target-dir": "Symfony/Component/Process",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Process.git",
+                "reference": "v2.2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/v2.2.1",
+                "reference": "v2.2.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Process\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Process Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-03-23 07:49:54"
         },
         {
             "name": "symfony/routing",
