@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @Table(name="commits")
- * @Entity()
+ * @Entity(repositoryClass="CiBoulette\Repository\CommitRepository")
  */
 class Commit
 {
