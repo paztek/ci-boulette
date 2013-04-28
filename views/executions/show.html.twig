@@ -2,7 +2,7 @@
 
 {% block main %}
 <div class="well">
-    <h2>Execution n°{{ execution.id }} of <a href="/pushes/{{ push.id }}">push n°{{ execution.push.id }}</a> on <a href="/repositories/{{ eecution.push.repository.id }}">{{ execution.push.repository }}</a></h2>
+    <h2>Execution n°{{ execution.id }} of <a href="/pushes/{{ push.id }}">push n°{{ execution.push.id }}</a> on <a href="/repositories/{{ execution.push.repository.id }}">{{ execution.push.repository }}</a></h2>
 
     <p>Timestamp : {{ execution.timestamp | date('d/m/Y - H:i:s') }}</p>
 	<p>Command : <a href="/repositories/{{ execution.push.repository.id }}/commands/{{ execution.command.id }}">{{ execution.command }}</a></p>
