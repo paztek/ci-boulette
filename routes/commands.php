@@ -28,16 +28,16 @@ $commandsApp->get('/new', function(Request $request, $repositoryId) use ($app) {
     $em = $app['orm.em'];
 
     // We find the repository
-    try
-    {
+    try {
         $repository = $em->getRepository('CiBoulette\Model\Repository')->find($repositoryId);
-    }
-    catch (NoResultException $exception)
-    {
+    } catch (NoResultException $exception) {
         throw new NotFoundHttpException('The repository with id = '.$repositoryId.' can\'t be found', $exception);
     }
 
-    return $app['twig']->render('commands/new.html.twig', array('repository' => $repository));
+    // We find the list of templates
+    $templates = $em->getRepository('CiBoulette\Model\CommandTemplate')->findAll();
+
+    return $app['twig']->render('commands/new.html.twig', array('repository' => $repository, 'templates' => $templates));
 });
 
 $commandsApp->post('/', function(Request $request, $repositoryId) use ($app) {

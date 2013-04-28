@@ -11,9 +11,20 @@
         </div>
     </div>
     <div class="control-group">
+        <label class="control-label" for="template">Template :</label>
+        <div class="controls">
+			<select data-action-name="template">
+			    {% for template in templates %}
+				<option value="{{ template.command }}">{{ template.name }}</option>
+				{% endfor %}
+			</select>
+			<button class="btn" data-action="recopy" data-source="template" data-dest="command"><i class="icon-arrow-down"></i> Recopy</button>
+		</div>
+    </div>
+    <div class="control-group">
         <label class="control-label" for="command">Command :</label>
         <div class="controls">
-            <textarea name="command" placeholder="Command to execute" required="required" class="input-xxlarge"></textarea>
+            <textarea name="command" data-action-name="command" placeholder="Command to execute" required="required" class="input-xxlarge"></textarea>
         </div>
     </div>
 	<div class="control-group">
