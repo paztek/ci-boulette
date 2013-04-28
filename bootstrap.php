@@ -6,6 +6,8 @@ $app = new Silex\Application();
 
 $app['debug'] = true;
 
+$app['working_dir'] = __DIR__;
+
 // Parse users.yml
 $yaml = new Symfony\Component\Yaml\Parser();
 $userConfig = $yaml->parse(file_get_contents(__DIR__.'/data/users.yml'));
