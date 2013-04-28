@@ -48,7 +48,7 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
         // Creation of the commits
         foreach ($commitsData as $i => $commitData) {
             try {
-                $commit = $em->getRepository('CiBoulette\Repository\Commit')->find($commitData['id']);
+                $commit = $em->getRepository('CiBoulette\Model\Commit')->find($commitData['id']);
             } catch (NoResultException $exception) {
                 $commit = new Commit();
             }
