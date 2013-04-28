@@ -3,6 +3,9 @@
 .settings/
 .project
 
+# PhpStorm files
+.idea/
+
 # OS X Files
 .DS_Store
 
@@ -23,12 +26,7 @@ web/info.php
 
 # Database
 /data/*
-
 !*.dist
 
 # Tmp files
 *.php~
-
-# Parameters file
-config.yml
-users.yml

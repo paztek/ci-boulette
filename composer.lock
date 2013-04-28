@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "303d33861e36f957ad467a144b110ae1",
+    "hash": "3072df25ccda13868ad9d619b19170ed",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -424,12 +424,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Silex.git",
-                "reference": "0b6aed3029c79190af3bda403ea9430c6ac4e725"
+                "reference": "8bf675f57cb7967cbfa3988be501f1dfe6c45432"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/0b6aed3029c79190af3bda403ea9430c6ac4e725",
-                "reference": "0b6aed3029c79190af3bda403ea9430c6ac4e725",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/8bf675f57cb7967cbfa3988be501f1dfe6c45432",
+                "reference": "8bf675f57cb7967cbfa3988be501f1dfe6c45432",
                 "shasum": ""
             },
             "require": {
@@ -498,7 +498,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2013-04-23 13:03:08"
+            "time": "2013-04-24 12:29:40"
         },
         {
             "name": "symfony/console",
