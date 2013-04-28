@@ -94,6 +94,7 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
                     if (!$command->isActive()) {
                         continue;
                     }
+                    $app['monolog']->addDebug(sprintf("[WEBHOOK]Running command %s", $command));
                     $process = new Process($command->getCommand(), $repository->getWorkingDir());
                     $process->run();
 
