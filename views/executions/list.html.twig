@@ -18,7 +18,7 @@
         <tr class={{ execution.successful ? "success" : "error" }}>
             <td>{{ execution.id }}</td>
 			<td>{{ execution.timestamp | date('d/m/Y - H:i:s') }}</td>
-			<td>{{ execution.repository }}</td>
+			<td>{{ execution.push.repository }}</td>
 			<td>{{ execution.command }}</td>
             <td>
                 <a href="/pushes/{{ push.id }}/executions/{{ execution.id }}" class="btn"><i class="icon-eye-open"></i></a>
