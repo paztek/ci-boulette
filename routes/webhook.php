@@ -86,6 +86,9 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
             $commands = $repository->getCommands();
 
             foreach ($commands as $command) {
+                if (!$command->isActive()) {
+                    continue;
+                }
                 $process = new Process($command->getCommand());
                 $process->run();
 

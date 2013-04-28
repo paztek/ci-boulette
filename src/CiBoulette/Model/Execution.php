@@ -215,4 +215,14 @@ class Execution
     {
         return $this->successful;
     }
+
+    /**
+     * Get successful
+     *
+     * @return boolean
+     */
+    public function isSuccessful()
+    {
+        return $this->successful;
+    }
 }
