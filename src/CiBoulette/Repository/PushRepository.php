@@ -40,7 +40,7 @@ class PushRepository extends BaseRepository
      * @return \CiBoulette\Model\Push
      * @throws \Doctrine\ORM\NoResultException
      */
-    public function findWithRepositoryExecutionsAndCommands($id)
+    public function findWithRepositoryExecutionsAndCommand($id)
     {
         $builder = $this->createQueryBuilder('p')
             ->select('p, r, e, c')
