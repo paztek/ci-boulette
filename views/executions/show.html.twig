@@ -2,18 +2,17 @@
 
 {% block main %}
 <div class="well">
-    <h2>Push {{ push }} of {{ push.repository }} Github repository</h2>
+    <h2>Execution n°{{ execution.id }} of push n°{{ execution.push.id }} on {{ execution.push.repository }}</h2>
 
-    <p>Repository : {{ push.repository }}</p>
-	<p>Ref : {{ push.ref }}</p>
-    <p>Timestamp : {{ push.timestamp | date('d/m/Y - H:i:s') }}</p>
-	<p>#Commits : {{ push.commits | length }}</p>
-	<p>Before : {{ push.before }}</p>
-	<p>After : {{ push.after }}</p>
+    <p>Timestamp : {{ execution.timestamp | date('d/m/Y - H:i:s') }}</p>
+	<p>Command : {{ execution.command }}</p>
+    <p>{{ execution.runnedCommand }}</p>
+    <p>Success : {{ execution.successful }}</p>
+    <p>Result : </p>
+    <p>{{ execution.shellResult }}</p>
 
     <div class="actions">
-        <a href="/pushes/" class="btn"><i class="icon-list"></i> Back to list</a>
-        <a href="/pushes/{{ push.id }}" data-method="delete" class="btn btn-danger"><i class="icon-remove icon-white"></i> Delete this push</a>
+        <a href="/pushes/{{ execution.push.id }}/executions" class="btn"><i class="icon-list"></i> Back to list</a>
     </div>
 </div>
 {% endblock %}
