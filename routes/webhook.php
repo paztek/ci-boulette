@@ -77,9 +77,12 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
 
         $em->flush();
 
-    } catch (Exception $exception) {
+    } catch (NoResultException $exception) {
         // The corresponding repository wasn't found.
-		$app['monolog']->addError(sprintf("[WEBHOOK]Repository '%s' is not found.", $repositoryUrl));
+        $app['monolog']->addError(sprintf("[WEBHOOK]Repository '%s' is not found.", $repositoryUrl));
+
+    } catch (Exception $exception) {
+        $app['monolog']->addError(sprintf("[WEBHOOK]Unknown exception", $exception->getMessage()));
         return new Response('', 201);
     }
 

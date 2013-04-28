@@ -15,7 +15,7 @@ class EncryptPasswordCommand extends Command
     {
         $this
             ->setName('admin:encrypt-password')
-            ->setDescription('Returns th encrypted version from a plaintext password')
+            ->setDescription('Returns the encrypted version from a plaintext password')
             ->setDefinition(array(
                     new InputArgument(
                             'password', InputArgument::REQUIRED, 'The password to encrypt')))
