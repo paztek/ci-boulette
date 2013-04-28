@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+<div class="well">
+    <h2>{{ template }} command template</h2>
+
+    <p>Name : {{ template.name }}</p>
+    <p>Command : {{ template.command }}</p>
+
+    <div class="actions">
+        <a href="/templates" class="btn"><i class="icon-list"></i> Back to list</a>
+        <a href="/templates/{{ template.id }}/edit" class="btn btn-primary"><i class="icon-wrench icon-white"></i> Modify this command template</a>
+        <a href="/templates/{{ template.id }}" data-method="delete" class="btn btn-danger"><i class="icon-remove icon-white"></i> Delete this command template</a>
+    </div>
+</div>
+{% endblock %}

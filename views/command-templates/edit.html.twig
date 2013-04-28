@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+<h2>Modify command template {{ template }}</h2>
+
+<form class="form-horizontal well" action="/templates/{{ template.id }}" method="POST">
+    <input type="hidden" name="_method" value="PUT"/>
+    <div class="control-group">
+        <label class="control-label" for="name">Name :</label>
+        <div class="controls">
+            <input type="text" name="name" required="required" value="{{ template.name }}">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="command">Command :</label>
+        <div class="controls">
+            <textarea name="command" placeholder="Command to execute" required="required" class="input-xxlarge">{{ template.command }}</textarea>
+        </div>
+    </div>
+
+	<div class="actions">
+        <a href="/templates" class="btn"><i class="icon-list"></i> Back to list</a>
+        <button type="submit" class="btn btn-success">Modify</button>
+        <a href="/templates/{{ template.id }}" data-method="delete" class="btn btn-danger"><i class="icon-remove icon-white"></i> Delete this command template</a>
+    </div>
+</form>
+{% endblock %}

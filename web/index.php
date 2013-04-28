@@ -52,6 +52,11 @@ $app->mount ('/pushes', include __DIR__.'/../routes/pushes.php');
 $app->mount('/pushes/{pushId}/executions', include __DIR__.'/../routes/executions.php');
 
 /*
+ * Command templates
+ */
+$app->mount('/templates', include __DIR__.'/../routes/command-templates.php');
+
+/*
  * Debug Routes
  */
 if ($app['debug']) {
