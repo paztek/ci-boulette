@@ -1,4 +1,6 @@
 <?php
+use Doctrine\ORM\NoResultException;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -27,6 +29,9 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
     try {
         // We find the corresponding repository
         $repository = $em->getRepository('CiBoulette\Model\Repository')->findOneByUrl($repositoryUrl);
+        if ($repository === null) {
+            throw new NoResultException('Repository not found : ' . $repositoryUrl);
+        }
 
 		$app['monolog']->addInfo(sprintf("[WEBHOOK]Hook source is '%s'.", $repository));
 
