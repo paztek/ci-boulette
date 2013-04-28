@@ -28,6 +28,7 @@ $repositoriesApp->post('/', function(Request $request) use ($app) {
     $repository = new \CiBoulette\Model\Repository();
     $repository->setName($request->request->get('name'));
     $repository->setUrl('https://github.com/' . $request->request->get('url'));
+    $repository->setWorkingDir($request->request->get('working_dir'));
     $repository->setActive($request->request->get('active', 0));
 
     $em->persist($repository);
@@ -83,6 +84,7 @@ $repositoriesApp->put('/{id}', function(Request $request, $id) use ($app) {
 
     $repository->setName($request->request->get('name'));
     $repository->setUrl($request->request->get('url'));
+    $repository->setWorkingDir($request->request->get('working_dir'));
     $repository->setActive($request->request->get('active', 0));
 
     $em->flush();
