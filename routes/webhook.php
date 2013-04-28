@@ -82,28 +82,37 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
         $em->flush();
 
         if ($repository->isActive()) {
-            // Process commands associated with the repository
-            $commands = $repository->getCommands();
+            // Check if we can cd to working dir
+            $process = new Process('cd ' . $repository->getWorkingDir());
+            $process->run();
+            if ($process->isSuccessful()) {
+                // Process commands associated with the repository
+                $commands = $repository->getCommands();
 
-            foreach ($commands as $command) {
-                if (!$command->isActive()) {
-                    continue;
+                foreach ($commands as $command) {
+                    if (!$command->isActive()) {
+                        continue;
+                    }
+                    $process = new Process($command->getCommand(), $repository->getWorkingDir());
+                    $process->run();
+
+                    $execution =  new Execution();
+                    $execution->setTimestamp(new \DateTime());
+                    $execution->setPush($push);
+                    $execution->setCommand($command);
+                    $execution->setRunnedCommand($command->getCommand());
+                    $execution->setSuccessful($process->isSuccessFul());
+                    if ($process->isSuccessful()) {
+                        $execution->setShellResult($process->getOutput());
+                    } else {
+                        $execution->setShellResult($process->getErrorOutput());
+                    }
+
+                    $em->persist($execution);
                 }
-                $process = new Process($command->getCommand(), $repository->getWorkingDir());
-                $process->run();
 
-                $execution =  new Execution();
-                $execution->setTimestamp(new \DateTime());
-                $execution->setPush($push);
-                $execution->setCommand($command);
-                $execution->setRunnedCommand($command->getCommand());
-                $execution->setSuccessful($process->isSuccessFul());
-                $execution->setShellResult($process->getOutput());
-
-                $em->persist($execution);
+                $em->flush();
             }
-
-            $em->flush();
 
         } else {
             $app['monolog']->addInfo(sprintf("[WEBHOOK]Repository '%s' is inactive : no command executed.", $repository));
