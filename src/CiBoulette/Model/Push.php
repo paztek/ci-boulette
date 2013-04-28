@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\OneToMany;
-use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
@@ -42,7 +41,7 @@ class Push
     /**
      * @var \CiBoulette\Model\Commit
      *
-     * @OneToOne(targetEntity="Commit", inversedBy="beforePush")
+     * @ManyToOne(targetEntity="Commit", inversedBy="beforePushes")
      * @JoinColumn(name="before_hash", referencedColumnName="hash", nullable=true)
      */
     protected $before;
@@ -50,7 +49,7 @@ class Push
     /**
      * @var \CiBoulette\Model\Commit
      *
-     * @OneToOne(targetEntity="\CiBoulette\Model\Commit", inversedBy="afterPush")
+     * @ManyToOne(targetEntity="\CiBoulette\Model\Commit", inversedBy="afterPushes")
      * @JoinColumn(name="after_hash", referencedColumnName="hash")
      */
     protected $after;

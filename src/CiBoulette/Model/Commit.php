@@ -5,7 +5,6 @@ use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
@@ -61,16 +60,25 @@ class Commit
     /**
      * @var \CiBoulette\Model\Push
      *
-     * @OneToOne(targetEntity="Push", mappedBy="before")
+     * @OneToMany(targetEntity="Push", mappedBy="before")
      */
-    protected $beforePush;
+    protected $beforePushes;
 
     /**
      * @var \CiBoulette\Model\Push
      *
-     * @OneToOne(targetEntity="Push", mappedBy="after")
+     * @OneToMany(targetEntity="Push", mappedBy="after")
      */
-    protected $afterPush;
+    protected $afterPushes;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->beforePushes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->afterPushes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -193,52 +201,6 @@ class Commit
     }
 
     /**
-     * Set beforePush
-     *
-     * @param  \CiBoulette\Model\Push $beforePush
-     * @return Commit
-     */
-    public function setBeforePush(\CiBoulette\Model\Push $beforePush = null)
-    {
-        $this->beforePush = $beforePush;
-
-        return $this;
-    }
-
-    /**
-     * Get beforePush
-     *
-     * @return \CiBoulette\Model\Push
-     */
-    public function getBeforePush()
-    {
-        return $this->beforePush;
-    }
-
-    /**
-     * Set afterPush
-     *
-     * @param  \CiBoulette\Model\Push $afterPush
-     * @return Commit
-     */
-    public function setAfterPush(\CiBoulette\Model\Push $afterPush = null)
-    {
-        $this->afterPush = $afterPush;
-
-        return $this;
-    }
-
-    /**
-     * Get afterPush
-     *
-     * @return \CiBoulette\Model\Push
-     */
-    public function getAfterPush()
-    {
-        return $this->afterPush;
-    }
-
-    /**
      * Set hash
      *
      * @param  string $hash
@@ -259,5 +221,71 @@ class Commit
     public function getHash()
     {
         return $this->hash;
+    }
+
+    /**
+     * Add beforePushes
+     *
+     * @param  \CiBoulette\Model\Push $beforePushes
+     * @return Commit
+     */
+    public function addBeforePushe(\CiBoulette\Model\Push $beforePushes)
+    {
+        $this->beforePushes[] = $beforePushes;
+
+        return $this;
+    }
+
+    /**
+     * Remove beforePushes
+     *
+     * @param \CiBoulette\Model\Push $beforePushes
+     */
+    public function removeBeforePushe(\CiBoulette\Model\Push $beforePushes)
+    {
+        $this->beforePushes->removeElement($beforePushes);
+    }
+
+    /**
+     * Get beforePushes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBeforePushes()
+    {
+        return $this->beforePushes;
+    }
+
+    /**
+     * Add afterPushes
+     *
+     * @param  \CiBoulette\Model\Push $afterPushes
+     * @return Commit
+     */
+    public function addAfterPushe(\CiBoulette\Model\Push $afterPushes)
+    {
+        $this->afterPushes[] = $afterPushes;
+
+        return $this;
+    }
+
+    /**
+     * Remove afterPushes
+     *
+     * @param \CiBoulette\Model\Push $afterPushes
+     */
+    public function removeAfterPushe(\CiBoulette\Model\Push $afterPushes)
+    {
+        $this->afterPushes->removeElement($afterPushes);
+    }
+
+    /**
+     * Get afterPushes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAfterPushes()
+    {
+        return $this->afterPushes;
     }
 }
