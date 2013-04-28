@@ -39,11 +39,11 @@ class Execution
     protected $runnedCommand;
 
     /**
-     * @var integer
+     * @var boolean
      *
-     * @Column(name="errCode", type="integer", nullable=false)
+     * @Column(name="successful", type="boolean", nullable=false)
      */
-    protected $errCode;
+    protected $successful;
 
     /**
      * @var integer
@@ -125,29 +125,6 @@ class Execution
     }
 
     /**
-     * Set errCode
-     *
-     * @param  integer   $errCode
-     * @return Execution
-     */
-    public function setErrCode($errCode)
-    {
-        $this->errCode = $errCode;
-
-        return $this;
-    }
-
-    /**
-     * Get errCode
-     *
-     * @return integer
-     */
-    public function getErrCode()
-    {
-        return $this->errCode;
-    }
-
-    /**
      * Set shellResult
      *
      * @param  string    $shellResult
@@ -214,5 +191,28 @@ class Execution
     public function getPush()
     {
         return $this->push;
+    }
+
+    /**
+     * Set successful
+     *
+     * @param  boolean   $successful
+     * @return Execution
+     */
+    public function setSuccessful($successful)
+    {
+        $this->successful = $successful;
+
+        return $this;
+    }
+
+    /**
+     * Get successful
+     *
+     * @return boolean
+     */
+    public function getSuccessful()
+    {
+        return $this->successful;
     }
 }
