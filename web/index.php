@@ -27,6 +27,11 @@ $app->get('/login', function(Request $request) use ($app) {
 });
 
 /*
+ * Webhook
+ */
+$app->mount('/', include __DIR__.'/../routes/webhook.php');
+
+/*
  * Repositories
  */
 $app->mount('/repositories', include __DIR__.'/../routes/repositories.php');
@@ -37,14 +42,14 @@ $app->mount('/repositories', include __DIR__.'/../routes/repositories.php');
 $app->mount('/repositories/{repositoryId}/commands', include __DIR__.'/../routes/commands.php');
 
 /*
- * Webhook
- */
-$app->mount('/', include __DIR__.'/../routes/webhook.php');
-
-/*
  * Pushes
  */
 $app->mount ('/pushes', include __DIR__.'/../routes/pushes.php');
+
+/*
+ * Executions
+ */
+$app->mount('/pushes/{pushId}/executions', include __DIR__.'/../routes/executions.php');
 
 /*
  * Debug Routes

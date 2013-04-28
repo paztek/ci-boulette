@@ -1,0 +1,34 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+<h2>List of executions for push n°{{ push.id }} on {{ push.repository }}</h2>
+
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+			<th>Timestamp</th>
+			<th>Repository</th>
+            <th>Command</th>
+            <th>Successful</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for execution in push.executions %}
+        <tr class={{ execution.successful ? "success" : "error" }}>
+            <td>{{ execution.id }}</td>
+			<td>{{ execution.timestamp | date('d/m/Y - H:i:s') }}</td>
+			<td>{{ execution.repository }}</td>
+			<td>{{ execution.command }}</td>
+            <td>
+                <a href="/pushes/{{ push.id }}/executions/{{ execution.id }}" class="btn"><i class="icon-eye-open"></i></a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="7">No execution have been performed yet</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
