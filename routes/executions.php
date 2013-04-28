@@ -14,7 +14,7 @@ $executionsApp->get('/', function(Request $request, $pushId) use ($app) {
     // We find the push with the associated executions
     try
     {
-        $push = $em->getRepository('CiBoulette\Model\Push')->findWithExecutions($pushId);
+        $push = $em->getRepository('CiBoulette\Model\Push')->findWithRepositoryExecutionsAndCommand($pushId);
     }
     catch (NoResultException $exception)
     {
