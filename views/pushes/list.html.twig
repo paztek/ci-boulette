@@ -21,13 +21,14 @@
         <tr class="success">
             <td>{{ push.id }}</td>
 			<td>{{ push.timestamp | date('d/m/Y - H:i:s') }}</td>
-			<td>{{ push.repository }}</td>
+			<td><a href="/repositories/{{ repository.id }}">{{ push.repository }}</a></td>
 			<td>{{ push.ref }}</td>
 			<td>{{ push.commits | length }}</td>
 			<td>{{ push.before }}</td>
 			<td>{{ push.after }}</td>
             <td>
                 <a href="/pushes/{{ push.id }}" class="btn"><i class="icon-eye-open"></i></a>
+                <a href="/pushes/{{ repository.id }}/executions" class="btn"><i class="icon-list-alt"></i></a>
             </td>
         </tr>
         {% else %}

@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block main %}
-<h2>List of commands for {{ repository }} Github repository</h2>
+<h2>List of commands for <a href="/repositories/{{ repository.id }}">{{ repository }}</a> Github repository</h2>
 
 <table class="table table-striped table-bordered table-hover">
     <thead>
