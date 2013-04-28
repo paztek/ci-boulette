@@ -1,8 +1,12 @@
 <?php
+use CiBoulette\Model\Execution;
+
 use Doctrine\ORM\NoResultException;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+
+use Symfony\Component\Process\Process;
 
 use CiBoulette\Model\Commit;
 use CiBoulette\Model\Push;
@@ -15,12 +19,6 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
 	$app['monolog']->addDebug('[WEBHOOK]Receiving Hook.');
 
     $payload = json_decode($request->request->get('payload'), true);
-
-	// ob_start();
-	// var_dump($payload);
-	// $payload_dump = ob_get_contents();
-	// ob_end_clean();
-	// $app['monolog']->addDebug(sprintf("[WEBHOOK]%s", $payload_dump));
 
     $repositoryUrl = $payload['repository']['url'];
 
@@ -46,6 +44,7 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
         $commitsData = $payload['commits'];
 
         $app['monolog']->addDebug(sprintf("[WEBHOOK]Commits to compute : %d", count($commitsData)));
+
         // Creation of the commits
         foreach ($commitsData as $i => $commitData) {
             $app['monolog']->addDebug(sprintf("[WEBHOOK]Computing Commit %d ID %s", $i, $commitData['id']));
@@ -81,6 +80,31 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
 
         $app['monolog']->addDebug("[WEBHOOK]Saving push...");
         $em->flush();
+
+        if ($repository->isActive()) {
+            // Process commands associated with the repository
+            $commands = $repository->getCommands();
+
+            foreach ($commands as $command) {
+                $process = new Process($command->getCommand());
+                $process->run();
+
+                $execution =  new Execution();
+                $execution->setTimestamp(new \DateTime());
+                $execution->setPush($push);
+                $execution->setCommand($command);
+                $execution->setRunnedCommand($command->getCommand());
+                $execution->setSuccessful($process->isSuccessFul());
+                $execution->setShellResult($process->getOutput());
+
+                $em->persist($execution);
+            }
+
+            $em->flush();
+
+        } else {
+            $app['monolog']->addInfo(sprintf("[WEBHOOK]Repository '%s' is inactive : no command executed.", $repository));
+        }
 
     } catch (NoResultException $exception) {
         // The corresponding repository wasn't found.
