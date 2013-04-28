@@ -1,0 +1,35 @@
+#!/usr/bin/env php
+<?php
+set_time_limit(0);
+
+//Bootstrap our Silex application
+$app = require_once __DIR__.'/bootstrap.php';
+
+//Include the namespaces of the components we plan to use
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
+//Instantiate our Console application
+$console = new Application('CI-Boulette','0');
+
+//Register a command to run from the command line
+$console->register('encrypt')
+    ->setDefinition(array(
+        new InputArgument('password', InputArgument::REQUIRED)
+    ))
+    ->setDescription('Encrypt user password')
+    ->setHelp('Usage: <info>php admin encrypt \<password\></info>')
+    ->setCode(
+        function(InputInterface $input, OutputInterface $output) use ($app)
+        {
+            $encoder = $app['security.encoder.digest'];
+            $password = $encoder->encodePassword($input->getArgument('password'), '');
+            $output->writeln("Encrypted password:\n______");
+            $output->writeln($password . "\n______");
+        }
+);
+
+$console->run();
