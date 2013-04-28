@@ -16,17 +16,9 @@ use Doctrine\ORM\Mapping\JoinColumn;
 class Commit
 {
     /**
-     * @var integer
-     *
-     * @Column(name="id", type="integer")
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    /**
      * @var string
      *
+     * @Id
      * @Column(name="hash", type="string", length=255)
      */
     protected $hash;
@@ -84,16 +76,6 @@ class Commit
     public function __toString()
     {
         return $this->getHash();
-    }
-	
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**

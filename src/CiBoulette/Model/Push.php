@@ -43,7 +43,7 @@ class Push
      * @var \CiBoulette\Model\Commit
      *
      * @OneToOne(targetEntity="Commit", inversedBy="beforePush")
-     * @JoinColumn(name="before_id", referencedColumnName="id", nullable=true)
+     * @JoinColumn(name="before_hash", referencedColumnName="hash", nullable=true)
      */
     protected $before;
 
@@ -51,7 +51,7 @@ class Push
      * @var \CiBoulette\Model\Commit
      *
      * @OneToOne(targetEntity="\CiBoulette\Model\Commit", inversedBy="afterPush")
-     * @JoinColumn(name="after_id", referencedColumnName="id")
+     * @JoinColumn(name="after_hash", referencedColumnName="hash")
      */
     protected $after;
 
