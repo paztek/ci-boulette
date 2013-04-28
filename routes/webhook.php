@@ -110,12 +110,15 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
                         $execution->setShellResult($process->getOutput());
                     } else {
                         $execution->setShellResult($process->getErrorOutput());
+                        $app['monolog']->addError(sprintf("[WEBHOOK]Command %s failed. Stopping executions", $command));
                         break;
                     }
                 }
 
                 $em->flush();
             }
+            else
+                $app['monolog']->addError(sprintf("[WEBHOOK]Unable to cd to working dir '%s'", $repository->getWorkingDir()));
 
         } else {
             $app['monolog']->addInfo(sprintf("[WEBHOOK]Repository '%s' is inactive : no command executed.", $repository));
