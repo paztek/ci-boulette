@@ -45,8 +45,10 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
 
         $commitsData = $payload['commits'];
 
+        $app['monolog']->addDebug(sprintf("[WEBHOOK]Commits to compute : %d", count($commitsData)));
         // Creation of the commits
         foreach ($commitsData as $i => $commitData) {
+            $app['monolog']->addDebug(sprintf("[WEBHOOK]Computing Commit %d ID %s", $i, $commitData['id']));
             try {
                 $commit = $em->getRepository('CiBoulette\Model\Commit')->find($commitData['id']);
             } catch (NoResultException $exception) {
@@ -67,6 +69,8 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
             }
         }
 
+        $app['monolog']->addDebug("[WEBHOOK]Find before...");
+
         // We try to find the commit referenced as 'before'. It may not exist.
         try {
             $commit = $em->getRepository('CiBoulette\Model\Commit')->find($payload['before']);
@@ -75,6 +79,7 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
             // Nothing to do
         }
 
+        $app['monolog']->addDebug("[WEBHOOK]Saving push...");
         $em->flush();
 
     } catch (NoResultException $exception) {
@@ -82,7 +87,7 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
         $app['monolog']->addError(sprintf("[WEBHOOK]Repository '%s' is not found.", $repositoryUrl));
 
     } catch (Exception $exception) {
-        $app['monolog']->addError(sprintf("[WEBHOOK]Unknown exception", $exception->getMessage()));
+        $app['monolog']->addError(sprintf("[WEBHOOK]Unknown exception: %s", $exception->getMessage()));
         return new Response('', 201);
     }
 
