@@ -85,6 +85,7 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
             // Check if we can cd to working dir
             $process = new Process('cd ' . $repository->getWorkingDir());
             $process->run();
+
             if ($process->isSuccessful()) {
                 // Process commands associated with the repository
                 $commands = $repository->getCommands();
@@ -97,6 +98,9 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
                     $process->run();
 
                     $execution =  new Execution();
+
+                    $em->persist($execution);
+
                     $execution->setTimestamp(new \DateTime());
                     $execution->setPush($push);
                     $execution->setCommand($command);
@@ -106,9 +110,8 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
                         $execution->setShellResult($process->getOutput());
                     } else {
                         $execution->setShellResult($process->getErrorOutput());
+                        break;
                     }
-
-                    $em->persist($execution);
                 }
 
                 $em->flush();
