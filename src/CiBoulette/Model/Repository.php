@@ -46,6 +46,13 @@ class Repository
     protected $active;
 
     /**
+     * @var string
+     *
+     * @Column(name="working_dir", type="string", nullable=false)
+     */
+    protected $workingDir;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @OneToMany(targetEntity="Command", mappedBy="repository")
@@ -211,5 +218,28 @@ class Repository
     public function getPushes()
     {
         return $this->pushes;
+    }
+
+    /**
+     * Set workingDir
+     *
+     * @param  string     $workingDir
+     * @return Repository
+     */
+    public function setWorkingDir($workingDir)
+    {
+        $this->workingDir = $workingDir;
+
+        return $this;
+    }
+
+    /**
+     * Get workingDir
+     *
+     * @return string
+     */
+    public function getWorkingDir()
+    {
+        return $this->workingDir;
     }
 }

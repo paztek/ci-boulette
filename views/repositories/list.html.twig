@@ -9,6 +9,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>URL</th>
+            <th>Working directory</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -18,6 +19,7 @@
             <td>{{ repository.id }}</td>
             <td>{{ repository.name }}</td>
             <td><a href="{{ repository.url }}">{{ repository.url }}</a></td>
+            <td>{{ repository.workingDir }}</td>
             <td>
                 <a href="/repositories/{{ repository.id }}/edit" class="btn"><i class="icon-wrench"></i></a>
                 <a href="/repositories/{{ repository.id }}" class="btn"><i class="icon-eye-open"></i></a>

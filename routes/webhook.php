@@ -89,7 +89,7 @@ $webhookApp->post('/webhook', function(Request $request) use ($app) {
                 if (!$command->isActive()) {
                     continue;
                 }
-                $process = new Process($command->getCommand());
+                $process = new Process($command->getCommand(), $repository->getWorkingDir());
                 $process->run();
 
                 $execution =  new Execution();
